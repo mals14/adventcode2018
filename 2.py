@@ -83,7 +83,7 @@ def part2(input_file):
     # print(f'{code_1} and {code_2}')
     # print(f'Answer is {answer_code}')
     return answer_code
-    
+
 
 
 if __name__ == "__main__":
