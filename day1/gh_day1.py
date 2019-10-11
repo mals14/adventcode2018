@@ -1,4 +1,4 @@
-# https://github.com/fogleman/AdventOfCode2018/blob/master/1.py
+# from https://github.com/fogleman/AdventOfCode2018/blob/master/1.py
 
 import fileinput
 
