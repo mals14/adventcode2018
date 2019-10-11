@@ -26,9 +26,22 @@ def get_checksum(input_file):
             three_count += is_char_repeat(label, 3)
     return two_count * three_count
 
-
 def main(input_file):
     print(f'checksum is {get_checksum(input_file)}')
+
+def get_input_file_name(fileName):
+    """Get the number after day and before underscore.
+
+    Arguments:
+        __file__ {string} -- [description]
+
+    Returns:
+        [string] -- [script trailing number]
+    """
+    import re
+    regex = r'day(\d+)_'
+    dayNumber = re.search(regex, fileName)[1]
+    return dayNumber
 
 if __name__ == "__main__":
 
@@ -37,7 +50,8 @@ if __name__ == "__main__":
         input_file = sys.argv[1]
     else:
         script_dir = Path(__file__).resolve().parent
-        input_file = script_dir / 'input2_1.txt'
+        inputFileNumber = get_input_file_name(__file__)
+        input_file = script_dir / "input_files" / f'input{inputFileNumber}.txt'
 
     main(input_file)
 
