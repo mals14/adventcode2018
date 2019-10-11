@@ -1,6 +1,36 @@
 from pathlib import Path
 import sys
 
+def is_char_repeat(label, count):
+    char_tested = []
+    unique_char_list = list(set(label)) # created list of unique characters using list and set
+    for unique_char in unique_char_list:
+        unique_char_count = 0
+        for char in label:
+            if unique_char == char:
+                unique_char_count += 1
+        # now counted how many times unique_char repeats in label
+        if unique_char_count == count:
+            return 1
+    return 0
+
+
+def get_checksum(input_file):
+    two_count = 0
+    three_count = 0
+    with open(input_file,"r") as f:
+        content = f.read()
+        labels = content.split('\n')
+        for label in labels:
+            two_count += is_char_repeat(label, 2)
+            three_count += is_char_repeat(label, 3)
+    return two_count * three_count
+
+def part1(input_file):
+    return get_checksum(input_file)
+
+# for part 2
+
 # given list of codes
 # find codes that are identical except for one character being different
 
@@ -31,7 +61,7 @@ def differ_by_one_char(code1, code2):
 
 
 
-def main(input_file):
+def part2(input_file):
     # Load the file into a list
     with open(input_file, 'r') as f:
         codes = [line.rstrip() for line in f]
@@ -50,8 +80,11 @@ def main(input_file):
         if found_answer:
             break
     # at this point the code should have found code and code 2
-    print(f'{code_1} and {code_2}')
-    print(f'Answer is {answer_code}')
+    # print(f'{code_1} and {code_2}')
+    # print(f'Answer is {answer_code}')
+    return answer_code
+    
+
 
 if __name__ == "__main__":
 
@@ -59,8 +92,8 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         input_file = sys.argv[1]
     else:
-        script_dir = Path(__file__).resolve().parent
-        input_file = script_dir / 'input2_1.txt'
+        input_file = Path(__file__).stem + '.txt'
 
-    main(input_file)
+    print(part1(input_file))
+    print(part2(input_file))
 
